@@ -12,7 +12,7 @@ import os
 pos_file = "position.txt"
 qtl_info_file = "qtlGeneInfoMSU6.txt"
 
-qtl_pos_dict = {} # 定义一个字典，QTL名字为键，值为一个包含染色体，qtl起始，qtl终止的位置信息
+qtl_pos_dict = {}
 for qtl_info in open(qtl_info_file):
     qtl_name = qtl_info.split("\t")[0]
     qtl_chrom = qtl_info.split("\t")[1]
@@ -20,12 +20,12 @@ for qtl_info in open(qtl_info_file):
     qtl_end = qtl_info.split("\t")[3]
     qtl_pos_dict[qtl_name] = [qtl_chrom, qtl_start, qtl_end]
 
-res_path = "result" # 定义结果结果文件输出目录名称
-if not os.path.exists(res_path): # 如果输出目录不存在
-    os.mkdir(res_path) # 则创建目录
+res_path = "result"
+if not os.path.exists(res_path):
+    os.mkdir(res_path)
 
 var2qtl_name_file = open("result/pos_qtl_name.xls", "w")
-qtl_name_list_total = [] # 定义所有QTL名称的列表
+qtl_name_list_total = []
 for line in open(pos_file):
     qtl_name_list = []
     var_chrom = line.split()[0]
@@ -38,7 +38,7 @@ for line in open(pos_file):
         and var_pos >= qtl_start \
         and var_pos <= qtl_end:
             qtl_name_list.append(qtl_name)
-    qtl_name_list_total += qtl_name_list # 把所有的QTL名称合成一个列表
+    qtl_name_list_total += qtl_name_list
 
     var2qtl_name_file.write(var_chrom \
         + "\t" \
